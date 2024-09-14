@@ -16,7 +16,6 @@ exports.searchResult = exports.deleteTodo = exports.updateTodo = exports.getTodo
 const todo_model_1 = require("../models/todo.model");
 const user_model_1 = require("../models/user.model");
 const app_utils_1 = require("../utils/app.utils");
-const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const generator = (0, app_utils_1.createUniqueNumberGenerator)();
 let signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,11 +39,10 @@ let signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const namePart = email.split("@");
         const number = generator.generate().toString();
         const username = `${namePart[0]}_${number}`;
-        const hashedPassword = yield bcrypt_1.default.hash(password, 10);
         const newUser = yield user_model_1.User.create({
             email,
             username,
-            password: hashedPassword,
+            password: password,
         });
         if (!newUser) {
             return res.status(500).json({
@@ -84,7 +82,7 @@ let login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "User not available",
             });
         }
-        const isPasswordMatched = yield bcrypt_1.default.compare(password, isUserAvailable.password);
+        const isPasswordMatched = password == isUserAvailable.password;
         if (!isPasswordMatched) {
             return res.status(400).json({
                 success: false,
