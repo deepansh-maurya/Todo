@@ -309,7 +309,7 @@ export default function Lists() {
         />
       ) : (
         <div className="w-[200px] mx-auto my-auto shadow-sm shadow-black h-[200px] flex flex-col justify-center items-center text-white rounded-lg bg-black opacity-[80%]">
-          <img src="../../public/notes.png" alt="" className="w-[50%]" />
+          <img src="./notes.png" alt="" className="w-[50%]" />
           <span className="font-bold">Focus on your day</span>
           <span className="text-sm">Get things done with ToDo</span>
         </div>
