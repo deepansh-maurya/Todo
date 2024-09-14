@@ -16,7 +16,7 @@ const LoginScreen: React.FC<{ visible: boolean; onClose: () => void }> = ({
   const handleFormSubmit = async (values: any) => {
     console.log("Login values:", values);
     const response = await useAuth(
-      "http://localhost:8080/api/v1/login",
+      import.meta.env.VITE_SERVER_URL,
       "login",
       values
     );

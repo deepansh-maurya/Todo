@@ -53,7 +53,7 @@ export default function Header() {
     console.log(searchInput);
 
     const response = await useTodo(
-      `${import.meta.env.VITE_SERVER_URL}/api/v1/search`,
+      "http://localhost:8080/api/v1/search",
       "search",
       searchInput
     );

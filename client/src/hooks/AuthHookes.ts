@@ -1,4 +1,4 @@
-export async function useAuth(url, task, data) {
+export async function useAuth(url: string, task: string, data: any) {
   try {
     let response;
     if (task == "signup") {
@@ -35,7 +35,8 @@ export async function useAuth(url, task, data) {
         },
       });
     }
-    const injson = await response.json();
+    let injson;
+    if (response) injson = await response.json();
     if (injson.success) return injson;
     else return null;
   } catch (error) {

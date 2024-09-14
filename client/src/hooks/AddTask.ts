@@ -1,4 +1,4 @@
-export async function useTodo(url, task, data) {
+export async function useTodo(url: string, task: string, data: any) {
   try {
     const token = localStorage.getItem("token");
     let response;

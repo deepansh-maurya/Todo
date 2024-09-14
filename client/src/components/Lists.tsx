@@ -48,7 +48,7 @@ export default function Lists() {
 
     if (username) {
       const response = await useTodo(
-        "http://localhost:8080/api/v1/update-todo",
+        `${import.meta.env.VITE_SERVER_URL}/api/v1/update-todo`,
         "update-todo",
         updatedTodo
       );
@@ -112,7 +112,7 @@ export default function Lists() {
     console.log(id);
     if (username) {
       const response = await useTodo(
-        "http://localhost:8080/api/v1/delete-todo",
+        `${import.meta.env.VITE_SERVER_URL}/api/v1/delete-todo`,
         "delete-todo",
         id
       );

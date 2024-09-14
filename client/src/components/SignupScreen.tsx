@@ -13,10 +13,12 @@ const SignupScreen: React.FC<{ visible: boolean; onClose: () => void }> = ({
     console.log("Signup values:", values);
 
     const response = await useAuth(
-      "http://localhost:8080/api/v1/signup",
+      `${import.meta.env.VITE_SERVER_URL}/api/v1/signup`,
       "signup",
       values
     );
+    console.log(response);
+
     if (response) toast.success("Signup successfully, login to proceed");
     else toast.error("Sign failed");
 
