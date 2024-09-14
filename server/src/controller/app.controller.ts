@@ -3,7 +3,6 @@ import { User } from "../models/user.model";
 import { createUniqueNumberGenerator } from "../utils/app.utils";
 import { Request, Response, NextFunction } from "express";
 
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 const generator = createUniqueNumberGenerator();
 
@@ -33,12 +32,10 @@ export let signup = async (req: Request, res: Response) => {
 
     const username = `${namePart[0]}_${number}`;
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = await User.create({
       email,
       username,
-      password: hashedPassword,
+      password: password,
     });
 
     if (!newUser) {
@@ -82,10 +79,7 @@ export let login = async (req: Request, res: Response) => {
       });
     }
 
-    const isPasswordMatched = await bcrypt.compare(
-      password,
-      isUserAvailable.password
-    );
+    const isPasswordMatched = password == isUserAvailable.password;
 
     if (!isPasswordMatched) {
       return res.status(400).json({
