@@ -18,18 +18,18 @@ interface Task {
 }
 
 const images = [
-  "../public/image.png",
-  "../public/image2.png",
-  "../public/image3.png",
-  "../public/image4.png",
-  "../public/image5.png",
-  "../public/image6.png",
-  "../public/image8.png",
-  "../public/image9.png",
-  "../public/image10.png",
-  "../public/image11.png",
-  "../public/image12.png",
-  "../public/image13.png",
+  "./image.png",
+  "./image2.png",
+  "./image3.png",
+  "./image4.png",
+  "./image5.png",
+  "./image6.png",
+  "./image8.png",
+  "./image9.png",
+  "./image10.png",
+  "./image11.png",
+  "./image12.png",
+  "./image13.png",
 ];
 
 const App: React.FC = () => {
@@ -53,7 +53,7 @@ const App: React.FC = () => {
 
   async function checkAuth() {
     const response = await useAuth(
-      "http://localhost:8080/api/v1/auth-status",
+      `${import.meta.env.VITE_SERVER_URL}/api/v1/auth-status`,
       "authcheck",
       null
     );
